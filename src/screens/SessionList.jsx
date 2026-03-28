@@ -1,7 +1,9 @@
-function SessionList({ sessions, setSessions }) {
-  const handleDelete = (indexToDelete) => {
-    setSessions((prev) => prev.filter((_, i) => i !== indexToDelete));
-  };
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
+
+
+function SessionList() {
+ const {sessions , handleDelete} = useContext(MyContext)
 
   if (sessions.length === 0) {
     return (

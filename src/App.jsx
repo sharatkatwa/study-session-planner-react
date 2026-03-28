@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import AllRoutes from "./routes/AllRoutes";
+import { NavLink ,useLocation} from "react-router";
 
-// MAIN APP
 export default function App() {
-  const [page, setPage] = useState("list");
-  const [sessions, setSessions] = useState([]);
+
+ const location = useLocation();
+  const isCreatePage = location.pathname === "/create";
+  // const {} = useContext(MyContext)
+  // console.log(test);
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans">
@@ -11,25 +14,16 @@ export default function App() {
         {/* NAV */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold">Study Planner</h1>
-          <button
-            onClick={() => setPage(page === "list" ? "create" : "list")}
-            className="px-4 py-2 rounded-xl bg-black text-white text-sm"
-          >
-            {page === "list" ? "+ New Session" : "← Back"}
-          </button>
+          
+          <NavLink to={isCreatePage?'/':'/create'}  className="px-4 py-2 rounded-xl bg-black text-white text-sm">
+             {isCreatePage ? "← Back" : "+ New Session"}
+          </NavLink>
         </div>
 
-        {page === "list" ? (
-          <SessionList sessions={sessions} setSessions={setSessions} />
-        ) : (
-          <CreateSession setSessions={setSessions} setPage={setPage} />
-        )}
+        <AllRoutes />
       </div>
     </div>
   );
 }
 
 // CREATE SESSION PAGE
-
-
-
