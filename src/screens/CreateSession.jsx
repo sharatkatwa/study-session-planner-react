@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { MyContext } from "../context/MyContext";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { nanoid } from "nanoid";
 function CreateSession() {
-  const { setSessions } = useContext(MyContext);
+  const { sessions,setSessions } = useContext(MyContext);
 
   const {
     register,
@@ -17,9 +18,8 @@ function CreateSession() {
   //   const handleChange = (e) => {
   //     setForm({ ...form, [e.target.name]: e.target.value });
   //   };
-
+console.log(sessions);
   const handleData = (e) => {
-    console.log(e);
 
     setSessions((prev) => [
   ...prev,
@@ -29,6 +29,7 @@ function CreateSession() {
     priority: e.priority,
     duration: e.duration,
     date: e.date,
+    id: nanoid()
   },
 ]);
 reset()
